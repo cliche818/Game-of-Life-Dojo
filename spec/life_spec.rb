@@ -1,4 +1,6 @@
 require 'spec_helper.rb'
 
-describe Game do
+describe Life do
+
+
 end
