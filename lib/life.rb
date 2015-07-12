@@ -35,7 +35,7 @@ class Life
     @board.each_with_index do |row, x|
       row.each_with_index do |space, y|
         if is_cell?(space) && neighbour_count(x, y) < 2
-          @board[i, j] = '.'
+          @board[x][y] = '.'
         end
       end
     end

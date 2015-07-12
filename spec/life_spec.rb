@@ -36,10 +36,18 @@ describe Life do
       life.add_cell(2,1)
       expect(life.neighbour_count(1,1)).to eq(2)
     end
+
+    it 'the corner cell should have a neighbour count of 1' do
+      life = Life.new(3,3)
+      life.add_cell(1,1)
+      life.add_cell(0,0)
+      life.add_cell(2,1)
+      expect(life.neighbour_count(0,0)).to eq(1)
+    end
   end
 
   describe 'next_phase' do
-    xit 'should got to the next generation where cell [1,1] dies because fewer than 2 neighbours' do
+    it 'should got to the next generation where cell [1,1] dies because fewer than 2 neighbours' do
       @life.add_cell(1,1)
       @life.next_phase
       expect(@life.display).to eq(". . .\n. . .\n")
