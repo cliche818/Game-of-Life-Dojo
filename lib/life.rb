@@ -1,16 +1,16 @@
 class Life
 
   def initialize(number_of_rows, number_of_columns)
-    @board = Array.new(number_of_rows) { Array.new(number_of_columns) }
+    @board = Array.new(number_of_rows) { Array.new(number_of_columns) { '.' } }
     @number_of_columns = number_of_columns
   end
 
   def display
-    display = ""
+    display = ''
 
     @board.each do  |row|
       row.each_with_index do |space, index|
-        display += '.'
+        display += space
 
         if @number_of_columns > index + 1
           display += ' '
@@ -21,5 +21,9 @@ class Life
     end
 
     display
+  end
+
+  def add_cell(x, y)
+    @board[x][y] = '*'
   end
 end
