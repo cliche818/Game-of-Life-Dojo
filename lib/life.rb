@@ -42,29 +42,25 @@ class Life
 
   end
 
-  def is_cell?(space)
-    space == '*'
-  end
+  #def neighbour_count(x, y)
+  #  count = 0
+  #
+  #  max_row_number = x + 1
+  #  max_column_number = y + 1
+  #
+  #  max_row_number.times do |x|
+  #    max_column_number.times do |y|
+  #
+  #      if not_out_of_bounds?(x, y) && is_cell?(@board[x][y])
+  #        count += 1
+  #      end
+  #    end
+  #  end
+  #
+  #  count
+  #end
 
-  def neighbour_count(x, y)
-    count = 0
-
-    max_row_number = x + 1
-    max_column_number = y + 1
-
-    max_row_number.times do |x|
-      max_column_number.times do |y|
-
-        if not_out_of_bounds?(x, y) && is_cell?(@board[x][y])
-          count += 1
-        end
-      end
-    end
-
-    count
-  end
-
-  def not_out_of_bounds?(x, y)
-    x < @number_of_rows || y < @number_of_columns
-  end
+  #def not_out_of_bounds?(x, y)
+  #  x < @number_of_rows || y < @number_of_columns
+  #end
 end
