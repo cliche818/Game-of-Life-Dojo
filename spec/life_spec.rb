@@ -52,8 +52,10 @@ describe Life do
       life.set_initial_living_cell(1,2)
       life.set_initial_living_cell(2,0)
 
+      p life.display
+
       life.next_phase
-      expect(life.display).to eq(". . .\n. * .\n. . .\n")
+      expect(life.display).to eq(". * .\n* * .\n. * .\n")
     end
 
     xit 'should get to the next generation where cell [1,1] dies because it has more than 3 neighbours' do
