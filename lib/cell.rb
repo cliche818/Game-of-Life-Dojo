@@ -1,28 +1,50 @@
 class Cell
-  attr_accessor :going_to_die
+  attr_accessor :going_to_die, :alive, :going_to_live
 
-  def initialize(x_coordinate, y_coordinate)
+  def initialize(x_coordinate, y_coordinate, alive=false)
     @x_coordinate = x_coordinate
     @y_coordinate = y_coordinate
+    @alive = alive
+    reset_status
+  end
+
+  def reset_status
     @going_to_die = false
+    @going_to_live = false
   end
 
   def to_s
-    '*'
+    @alive ? '*' : '.'
   end
 
   def neighbour_count(board)
     count = 0
 
     max_row_number = @x_coordinate + 1
+    min_row_number = @x_coordinate - 1
     max_column_number = @y_coordinate + 1
+    min_column_number = @y_coordinate - 1
 
-    (max_row_number + 1).times do |x|
-      (max_column_number + 1).times do |y|
+    (min_row_number..max_row_number).each do |x|
+      (min_column_number..max_column_number).each do |y|
 
-        if not_out_of_bounds?(board, x, y) && has_cell?(board, x, y) && not_same_coordinate(x, y) && is_neighbour?(x, y)
+        #p "The current coordinate x:#{x} y:#{y}"
+
+        if not_out_of_bounds?(board, x, y) && board[x][y].alive && not_same_coordinate(x, y) && is_neighbour?(x, y)
           count += 1
         end
+        #if not_out_of_bounds?(board, x, y)
+        #  p 'a'
+        #  if board[x][y].alive
+        #    p 'b'
+        #    if not_same_coordinate(x, y)
+        #      p 'c'
+        #      if is_neighbour?(x, y)
+        #        count += 1
+        #      end
+        #    end
+        #  end
+        #end
       end
     end
 
@@ -40,13 +62,8 @@ class Cell
     !(x == @x_coordinate && y == @y_coordinate)
   end
 
-
-  def has_cell?(board, x, y)
-    board[x][y].class == Cell
-  end
-
   def not_out_of_bounds?(board, x, y)
-    x < board.size && y < board[0].size
+    x < board.size && y < board[0].size && x >= 0 && y >= 0
   end
 
 end
