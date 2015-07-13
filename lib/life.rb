@@ -41,13 +41,10 @@ class Life
         neighbour_count = space.neighbour_count(@board)
 
         if neighbour_count < 2
-          p "DIE!! x: #{x} y: #{y}"
           @board[x][y].going_to_die = true
         elsif neighbour_count > 3
-          p "DIE!!! x: #{x} y: #{y}"
           @board[x][y].going_to_die = true
         elsif neighbour_count == 3
-          p "LIVE!!! x: #{x} y: #{y}"
           @board[x][y].going_to_live = true
         end
       end
