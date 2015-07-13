@@ -25,7 +25,7 @@ class Life
     display
   end
 
-  def add_cell(x, y)
+  def add_initial_cell(x, y)
     @board[x][y] = Cell.new(x, y)
   end
 
@@ -34,12 +34,31 @@ class Life
 
     @board.each_with_index do |row, x|
       row.each_with_index do |space, y|
-        if is_cell?(space) && space.neighbour_count(@board) < 2
-          @board[x][y] = '.'
+        if is_cell?(space)
+          neighbour_count = space.neighbour_count(@board)
+
+          if neighbour_count < 2
+            @board[x][y].going_to_die = true
+          elsif neighbour_count == 2
+            #do nothing
+          end
         end
       end
     end
 
+    kill_all_cells_for_next_phase
+  end
+
+  private
+
+  def kill_all_cells_for_next_phase
+    @board.each_with_index do |row, x|
+      row.each_with_index do |space, y|
+        if is_cell?(space) && space.going_to_die
+          @board[x][y] = '.'
+        end
+      end
+    end
   end
 
   def is_cell?(space)

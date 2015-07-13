@@ -9,7 +9,6 @@ describe Cell do
       board= [ ['', Cell.new(0,1), ''],
               ['', cell, ''],
               ['', Cell.new(2,1), '']]
-
       expect(cell.neighbour_count(board)).to eq(2)
     end
 
@@ -22,13 +21,14 @@ describe Cell do
       expect(cell.neighbour_count(board)).to eq(1)
     end
 
-    it 'should have a neighbour count of 1 at the bottom right corner' do
+    it 'should have a neighbour count of 1 at the bottom right corner'do
       cell = Cell.new(2,2)
-      board= [ [Cell, '', ''],
+      board= [ [Cell.new(0,0), '', ''],
                ['', '', ''],
                ['', Cell.new(2,1), cell]]
 
       expect(cell.neighbour_count(board)).to eq(1)
     end
   end
+
 end
