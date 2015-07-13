@@ -39,8 +39,8 @@ class Life
 
           if neighbour_count < 2
             @board[x][y].going_to_die = true
-          elsif neighbour_count == 2
-            #do nothing
+          elsif neighbour_count > 3
+            @board[x][y].going_to_die = true
           end
         end
       end
