@@ -11,7 +11,8 @@ class Life
 
     @board.each do  |row|
       row.each_with_index do |space, index|
-        display += space
+
+        display += space.to_s
 
         if @number_of_columns > index + 1
           display += ' '
@@ -25,16 +26,15 @@ class Life
   end
 
   def add_cell(x, y)
-    @board[x][y] = '*'
+    @board[x][y] = Cell.new(x, y)
   end
 
   def next_phase
     @old_board = @board.dup
 
-
     @board.each_with_index do |row, x|
       row.each_with_index do |space, y|
-        if is_cell?(space) && neighbour_count(x, y) < 2
+        if is_cell?(space) && space.neighbour_count(@board) < 2
           @board[x][y] = '.'
         end
       end
@@ -42,25 +42,7 @@ class Life
 
   end
 
-  #def neighbour_count(x, y)
-  #  count = 0
-  #
-  #  max_row_number = x + 1
-  #  max_column_number = y + 1
-  #
-  #  max_row_number.times do |x|
-  #    max_column_number.times do |y|
-  #
-  #      if not_out_of_bounds?(x, y) && is_cell?(@board[x][y])
-  #        count += 1
-  #      end
-  #    end
-  #  end
-  #
-  #  count
-  #end
-
-  #def not_out_of_bounds?(x, y)
-  #  x < @number_of_rows || y < @number_of_columns
-  #end
+  def is_cell?(space)
+    space.class == Cell
+  end
 end

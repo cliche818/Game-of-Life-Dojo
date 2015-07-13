@@ -5,6 +5,10 @@ class Cell
     @y_coordinate = y_coordinate
   end
 
+  def to_s
+    '*'
+  end
+
   def neighbour_count(board)
     count = 0
 
@@ -13,8 +17,6 @@ class Cell
 
     (max_row_number + 1).times do |x|
       (max_column_number + 1).times do |y|
-
-        p "x:#{x} y:#{y} coord x #{@x_coordinate} y #{@y_coordinate}"
         if not_out_of_bounds?(board, x, y) && has_cell?(board, x, y) && not_same_coordinate(x, y)
           count += 1
         end
@@ -34,8 +36,6 @@ class Cell
   end
 
   def not_out_of_bounds?(board, x, y)
-    p "x #{x} y #{y} board row #{board.size} board column #{board[0].size}"
-
     x < board.size && y < board[0].size
   end
 
