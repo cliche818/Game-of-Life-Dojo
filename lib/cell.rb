@@ -28,23 +28,9 @@ class Cell
     (min_row_number..max_row_number).each do |x|
       (min_column_number..max_column_number).each do |y|
 
-        #p "The current coordinate x:#{x} y:#{y}"
-
         if not_out_of_bounds?(board, x, y) && board[x][y].alive && not_same_coordinate(x, y) && is_neighbour?(x, y)
           count += 1
         end
-        #if not_out_of_bounds?(board, x, y)
-        #  p 'a'
-        #  if board[x][y].alive
-        #    p 'b'
-        #    if not_same_coordinate(x, y)
-        #      p 'c'
-        #      if is_neighbour?(x, y)
-        #        count += 1
-        #      end
-        #    end
-        #  end
-        #end
       end
     end
 
